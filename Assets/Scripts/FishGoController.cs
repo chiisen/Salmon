@@ -18,6 +18,12 @@ public class FishGoController : FreeLeftToRightMovement
 
     protected SpriteRenderer _renderer;
 
+    [Header("手機觸控螢幕")]
+    public ETCTouchPad TouchPad;
+
+    [Header("搖桿")]
+    public ETCJoystick Joystick;
+
     // 要有 Rigidbody2D 才會有作用
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -68,30 +74,59 @@ public class FishGoController : FreeLeftToRightMovement
             // 手動移動 先關閉移動
             LevelManager.Instance.WaterFlows(false);
         }
+
+        TouchPad = InputManager.Instance.TouchPad;
+        if (TouchPad != null)
+        {
+            TouchPad.OnDownLeft.AddListener(() => {
+                LeftButtonDown();
+            });
+
+            TouchPad.OnDownRight.AddListener(() => {
+                RightButtonDown();
+            });
+        }
+
+        Joystick = InputManager.Instance.Joystick;
+        if (Joystick != null)
+        {
+            Joystick.OnDownLeft.AddListener(() => {
+                LeftButtonDown();
+            });
+
+            Joystick.OnDownRight.AddListener(() => {
+                RightButtonDown();
+            });
+        }
+    }
+
+    protected void LeftButtonDown()
+    {
+        // 一定有按下按鈕
+        bool bButtonUp_ = true;
+
+        _KeyBuffer.Add(false);
+
+        // 手動移動
+        ManualMove(bButtonUp_);
+    }
+
+    protected void RightButtonDown()
+    {
+        // 一定有按下按鈕
+        bool bButtonUp_ = true;
+
+        _KeyBuffer.Add(true);
+
+        // 手動移動
+        ManualMove(bButtonUp_);
     }
 
     // 手動移動
-    protected void ManualMove()
+    protected void ManualMove(bool bButtonUp)
     {
-        // 有沒有按下按鈕
-        bool bButtonUp_ = false;
-
-        if (Input.GetButtonDown("Left"))
-        {
-            _KeyBuffer.Add(false);
-
-            bButtonUp_ = true;
-        }
-
-        if (Input.GetButtonDown("Right"))
-        {
-            _KeyBuffer.Add(true);
-
-            bButtonUp_ = true;
-        }
-
         // 有按下按鈕要處理的事件
-        if (bButtonUp_ == true)
+        if (bButtonUp == true)
         {
             if (_KeyBuffer.Count >= 2)
             {
@@ -131,8 +166,25 @@ public class FishGoController : FreeLeftToRightMovement
 
         if (AotuMove == false)
         {
+            // 有沒有按下按鈕
+            bool bButtonUp_ = false;
+
+            if (Input.GetButtonDown("Left"))
+            {
+                _KeyBuffer.Add(false);
+
+                bButtonUp_ = true;
+            }
+
+            if (Input.GetButtonDown("Right"))
+            {
+                _KeyBuffer.Add(true);
+
+                bButtonUp_ = true;
+            }
+
             // 手動移動
-            ManualMove();
+            ManualMove(bButtonUp_);
         }
     }
 }

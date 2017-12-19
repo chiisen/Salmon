@@ -7,7 +7,11 @@ using UnityEngine;
 /// </summary>
 public class InputManager : Singleton<InputManager>
 {
+    [Header("手機觸控螢幕")]
     public ETCTouchPad TouchPad;
+
+    [Header("搖桿")]
+    public ETCJoystick Joystick;
 
     protected virtual void Start()
     {
@@ -31,6 +35,30 @@ public class InputManager : Singleton<InputManager>
                 RightButtonDown();
             });
             TouchPad.OnPressRight.AddListener(() => {
+                RightButtonPressed();
+            });
+        }
+
+        if (Joystick != null)
+        {
+            Joystick.OnDownLeft.AddListener(() => {
+                LeftButtonDown();
+            });
+            Joystick.OnPressLeft.AddListener(() => {
+                LeftButtonPressed();
+            });
+
+
+            Joystick.onTouchUp.AddListener(() => {
+                RightButtonUp();
+                LeftButtonUp();
+            });
+
+
+            Joystick.OnDownRight.AddListener(() => {
+                RightButtonDown();
+            });
+            Joystick.OnPressRight.AddListener(() => {
                 RightButtonPressed();
             });
         }
