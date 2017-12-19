@@ -69,6 +69,9 @@ public class LevelManager : Singleton<LevelManager>
     [Header("玩家過關需要移動的距離")]
     public int Distance = 999;
 
+    // 名稱為 Level 的 GameObject 存放所以動態生成的物件 
+    protected GameObject _levelRoot;
+
     // 距離減一
     public virtual void LessDistance()
     {
@@ -182,6 +185,8 @@ public class LevelManager : Singleton<LevelManager>
     /// </summary>
     protected virtual void Start()
     {
+        _levelRoot = GameObject.Find("Level");
+
         InstantiateCharacters();
     }
 
@@ -237,6 +242,11 @@ public class LevelManager : Singleton<LevelManager>
         }
         instance_.transform.position = new Vector3( x_, EnemyStart, instance_.transform.position.z);// 魚 z 是 -3 可以蓋住魚
 
+        if (_levelRoot != null)
+        {
+            instance_.transform.SetParent(_levelRoot.transform, false);
+        }
+
         _Time = 0f;
     }
 
@@ -253,6 +263,11 @@ public class LevelManager : Singleton<LevelManager>
         PlayableCharacter instance_ = (PlayableCharacter)Instantiate(PlayableCharacters);
         // we position it based on the StartingPosition point
         instance_.transform.position = new Vector3(StartingPosition.transform.position.x, StartingPosition.transform.position.y, instance_.transform.position.z);// z 用原來的 Prefabs 的
+
+        if (_levelRoot != null)
+        {
+            instance_.transform.SetParent(_levelRoot.transform, false);
+        }
 
         // we feed it to the game manager
         CurrentPlayableCharacters = instance_;

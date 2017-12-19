@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 25ee2c90e5389e3459f29c22b7b55d93
-timeCreated: 1513219342
+timeCreated: 1513682358
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -105,10 +105,10 @@ TextureImporter:
       name: Fish_0
       rect:
         serializedVersion: 2
-        x: 232
-        y: 1034
-        width: 1146
-        height: 314
+        x: 0
+        y: 1257
+        width: 1707
+        height: 468
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,10 +119,10 @@ TextureImporter:
       name: Fish_1
       rect:
         serializedVersion: 2
-        x: 232
-        y: 718
-        width: 1144
-        height: 272
+        x: 0
+        y: 786
+        width: 1705
+        height: 405
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +133,10 @@ TextureImporter:
       name: Fish_2
       rect:
         serializedVersion: 2
-        x: 253
-        y: 205
-        width: 1170
-        height: 416
+        x: 32
+        y: 23
+        width: 1740
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

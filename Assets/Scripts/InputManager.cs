@@ -7,11 +7,45 @@ using UnityEngine;
 /// </summary>
 public class InputManager : Singleton<InputManager>
 {
+    public ETCTouchPad TouchPad;
+
+    protected virtual void Start()
+    {
+        if (TouchPad != null)
+        {
+            TouchPad.OnDownLeft.AddListener(() => {
+                LeftButtonDown();
+            });
+            TouchPad.OnPressLeft.AddListener(() => {
+                LeftButtonPressed();
+            });
+
+
+            TouchPad.onTouchUp.AddListener(() => {
+                RightButtonUp();
+                LeftButtonUp();
+            });
+
+
+            TouchPad.OnDownRight.AddListener(() => {
+                RightButtonDown();
+            });
+            TouchPad.OnPressRight.AddListener(() => {
+                RightButtonPressed();
+            });
+        }
+    }
+
     /// <summary>
     /// Every frame, we get the various inputs and process them
     /// </summary>
     protected virtual void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         HandleKeyboard();
     }
 
