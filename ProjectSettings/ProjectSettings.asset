@@ -10,11 +10,12 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: Salmon
+  companyName: "\u9177\u4E09\u89D2"
+  productName: "\u5C0F\u6AFB\u904E\u4E94\u95DC"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.058823526, g: 0.057767566, b: 0.057525948,
+    a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -29,7 +30,7 @@ PlayerSettings:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.9997228
     height: 1
   m_SplashScreenBackgroundPortraitUvs:
     serializedVersion: 2

@@ -8,10 +8,10 @@ using UnityEngine;
 public class InputManager : Singleton<InputManager>
 {
     [Header("手機觸控螢幕")]
-    public ETCTouchPad TouchPad;
+    public ETCTouchPad TouchPad = null;
 
     [Header("搖桿")]
-    public ETCJoystick Joystick;
+    public ETCJoystick Joystick = null;
 
     protected virtual void Start()
     {
@@ -49,7 +49,7 @@ public class InputManager : Singleton<InputManager>
             });
 
 
-            Joystick.onTouchUp.AddListener(() => {
+            Joystick.onMoveEnd.AddListener(() => {
                 RightButtonUp();
                 LeftButtonUp();
             });
