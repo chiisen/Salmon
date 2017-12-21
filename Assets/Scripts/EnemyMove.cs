@@ -34,11 +34,18 @@ public class EnemyMove : MonoBehaviour
 
     protected Collider2D _col2D;
 
+    protected float _OffsetTime = 0f;
+    protected float _time = 0f;
+    [Header("是否動中")]
+    public bool play = true;
+
     void Start()
     {
         enemyEnd = LevelManager.Instance.EnemyEnd;
 
         _col2D = GetComponent<Collider2D>();
+
+        _time = Time.time;
     }
 
     // 要有 Rigidbody2D 才會有作用
@@ -116,6 +123,15 @@ public class EnemyMove : MonoBehaviour
 
     void Update ()
     {
+        if (play == true)
+        {
+            if (_OffsetTime != Time.time)
+            {
+                _time += (Time.time - _OffsetTime);
+                _OffsetTime = Time.time;
+            }
+        }
+
         _newPosition = transform.position;
 
         _newPosition.y -= (MoveSpeed * Time.deltaTime);

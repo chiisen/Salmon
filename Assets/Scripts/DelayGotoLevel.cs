@@ -8,6 +8,13 @@ public class DelayGotoLevel : MonoBehaviour
     public Text Timer;
     public Text Title;
 
+    [Header("手機觸控螢幕")]
+    public ETCTouchPad TouchPad = null;
+
+    // ETCJoystick 在 Unity 上的 Inspector 上的 Visible 設定不能關閉，不然會偵測不到訊號。
+    [Header("搖桿")]
+    public ETCJoystick Joystick = null;
+
     protected float _Time = 0f;
 
     [Header("延遲幾秒到下一關")]
@@ -24,10 +31,64 @@ public class DelayGotoLevel : MonoBehaviour
             Title.text = TitleString;
         }
         StartCoroutine(StartCoroutineDelayGotoLevel(NextLevel));
+
+#if UNITY_ANDROID
+
+        if (Joystick != null)
+        {
+            Joystick.gameObject.SetActive(false);
+        }
+
+        if (TouchPad != null)
+        {
+            TouchPad.OnDownLeft.AddListener(() => {
+                ButtonUp();
+            });
+
+            TouchPad.OnDownRight.AddListener(() => {
+                ButtonUp();
+            });
+        }
+
+#endif // UNITY_ANDROID
+
+#if UNITY_STANDALONE_WIN
+
+        if (TouchPad != null)
+        {
+            TouchPad.gameObject.SetActive(false);
+        }
+
+        // ETCJoystick 在 Unity 上的 Inspector 上的 Visible 設定不能關閉，不然會偵測不到訊號。
+        if (Joystick != null)
+        {
+            Joystick.OnDownLeft.AddListener(() => {
+                ButtonUp();
+            });
+
+            Joystick.OnDownRight.AddListener(() => {
+                    ButtonUp();
+                });
+        }
+
+#endif // UNITY_STANDALONE_WIN
+    }
+
+    public virtual void ButtonUp()
+    {
+        LevelManager.Instance.GotoLevel(NextLevel);
     }
 
     protected virtual void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if (Input.GetButtonUp("Left")) { ButtonUp(); }
+        if (Input.GetButtonUp("Right")) { ButtonUp(); }
+
         if (_Time != 0)
         {
             float offsetTime_ = Time.time - _Time;

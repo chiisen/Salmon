@@ -18,12 +18,6 @@ public class FishGoController : FreeLeftToRightMovement
 
     protected SpriteRenderer _renderer;
 
-    [Header("手機觸控螢幕")]
-    public ETCTouchPad TouchPad;
-
-    [Header("搖桿")]
-    public ETCJoystick Joystick;
-
     // 要有 Rigidbody2D 才會有作用
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -75,29 +69,35 @@ public class FishGoController : FreeLeftToRightMovement
             LevelManager.Instance.WaterFlows(false);
         }
 
-        TouchPad = InputManager.Instance.TouchPad;
-        if (TouchPad != null)
+#if UNITY_ANDROID
+        ETCTouchPad TouchPad_ = InputManager.Instance.TouchPad;
+        if (TouchPad_ != null)
         {
-            TouchPad.OnDownLeft.AddListener(() => {
+            TouchPad_.OnDownLeft.AddListener(() => {
                 LeftButtonDown();
             });
 
-            TouchPad.OnDownRight.AddListener(() => {
+            TouchPad_.OnDownRight.AddListener(() => {
                 RightButtonDown();
             });
         }
+#endif // UNITY_ANDROID
 
-        Joystick = InputManager.Instance.Joystick;
-        if (Joystick != null)
+#if UNITY_STANDALONE_WIN
+
+        // ETCJoystick 在 Unity 上的 Inspector 上的 Visible 設定不能關閉，不然會偵測不到訊號。
+        ETCJoystick Joystick_ = InputManager.Instance.Joystick;
+        if (Joystick_ != null)
         {
-            Joystick.OnDownLeft.AddListener(() => {
+            Joystick_.OnDownLeft.AddListener(() => {
                 LeftButtonDown();
             });
 
-            Joystick.OnDownRight.AddListener(() => {
+            Joystick_.OnDownRight.AddListener(() => {
                 RightButtonDown();
             });
         }
+#endif // UNITY_STANDALONE_WIN
     }
 
     protected void LeftButtonDown()

@@ -10,11 +10,20 @@ public class InputManager : Singleton<InputManager>
     [Header("手機觸控螢幕")]
     public ETCTouchPad TouchPad = null;
 
+    // ETCJoystick 在 Unity 上的 Inspector 上的 Visible 設定不能關閉，不然會偵測不到訊號。
     [Header("搖桿")]
     public ETCJoystick Joystick = null;
 
     protected virtual void Start()
     {
+
+#if UNITY_ANDROID
+
+        if (Joystick != null)
+        {
+            Joystick.gameObject.SetActive(false);
+        }
+
         if (TouchPad != null)
         {
             TouchPad.OnDownLeft.AddListener(() => {
@@ -39,6 +48,16 @@ public class InputManager : Singleton<InputManager>
             });
         }
 
+#endif // UNITY_ANDROID
+
+#if UNITY_STANDALONE_WIN
+
+        if (TouchPad != null)
+        {
+            TouchPad.gameObject.SetActive(false);
+        }
+
+        // ETCJoystick 在 Unity 上的 Inspector 上的 Visible 設定不能關閉，不然會偵測不到訊號。
         if (Joystick != null)
         {
             Joystick.OnDownLeft.AddListener(() => {
@@ -62,6 +81,8 @@ public class InputManager : Singleton<InputManager>
                 RightButtonPressed();
             });
         }
+
+#endif // UNITY_STANDALONE_WIN
     }
 
     /// <summary>

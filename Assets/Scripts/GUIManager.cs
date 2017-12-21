@@ -63,8 +63,10 @@ public class GUIManager : Singleton<GUIManager>
 
             if (bUpdate_ != true)
             {
-                int distance_ = _MaxDistance - distance;
-                Distance.text = "距離:" + distance_.ToString("#0") + " / " + _MaxDistance.ToString("#0");
+                if (distance >= 0)
+                {
+                    Distance.text = "剩下 " + distance.ToString("#0") + " 公尺";
+                }
             }
         }
     }
