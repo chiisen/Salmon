@@ -21,14 +21,26 @@ public class DelayGotoLevel : MonoBehaviour
     public float DelayTime = 5f;
     [Header("指定的下一關")]
     public string NextLevel = "Level2";
-    [Header("標題字串")]
-    public string TitleString = "Title";
+
+    [Header("初始化 TotalTime")]
+    public bool TotalTime = false;
+
+    protected int _TotalTime = 0;
 
     void Start ()
     {
-        if (Title != null)
+        if (TotalTime == true)
         {
-            Title.text = TitleString;
+            // 初始化玩家遊戲總時間
+            PlayerPrefs.SetInt("TotalTime", 0);
+        }
+        else
+        {
+            _TotalTime = PlayerPrefs.GetInt("TotalTime");
+            if (Title != null)
+            {
+                Title.text = string.Format("遊戲總時間為 {0} 秒", _TotalTime);
+            }
         }
         StartCoroutine(StartCoroutineDelayGotoLevel(NextLevel));
 

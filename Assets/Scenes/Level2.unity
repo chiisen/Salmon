@@ -189,7 +189,7 @@ MonoBehaviour:
   EnemyEnd: -7
   EnemyRandX: 1
   EnemyRandCount: 1
-  Lifes: 3
+  Lifes: 5
   EndTime: 30
   NextLevel: NextLevel2
   ResetLevel: ResetLevel2
@@ -201,6 +201,7 @@ MonoBehaviour:
     type: 2}
   AotuMove: 1
   Distance: 999
+  FirstEnemyRand: 0
 --- !u!1 &115392030
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82eac66e4a62b904c963ff2f0bb84a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.2
   play: 1
 --- !u!23 &163978443
 MeshRenderer:
@@ -1289,7 +1290,7 @@ Prefab:
     - target: {fileID: 224647159914166658, guid: d6b08f826ff9b9146bd8bc95574a7580,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 224647159914166658, guid: d6b08f826ff9b9146bd8bc95574a7580,
         type: 2}
@@ -1639,7 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82eac66e4a62b904c963ff2f0bb84a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.4
+  speed: 0.2
   play: 1
 --- !u!23 &1778294774
 MeshRenderer:

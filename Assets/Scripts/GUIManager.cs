@@ -30,7 +30,8 @@ public class GUIManager : Singleton<GUIManager>
     // 遊戲結束時間
     protected float _EndTime = 60f;
     protected float _Time = 0f;
-    Action _TimesUp = null;
+    protected Action _TimesUp = null;
+    protected float _offsetTime = 0f;
 
     protected virtual void Start()
     {
@@ -38,7 +39,13 @@ public class GUIManager : Singleton<GUIManager>
         _MaxDistance = LevelManager.Instance.Distance;
         _EndTime = LevelManager.Instance.EndTime;
 
-        _TimesUp = () => { StartCoroutine(StartCoroutineTimesUp()); };
+        _TimesUp = () => { StartCoroutine(StartCoroutineTimesUp());
+            // 紀錄時間
+            int TotalTime_ = PlayerPrefs.GetInt("TotalTime");
+            int offsetTime_ = (int)_offsetTime;
+            TotalTime_ += offsetTime_;
+            PlayerPrefs.SetInt("TotalTime", TotalTime_);
+        };
     }
 
     protected virtual IEnumerator StartCoroutineTimesUp()
@@ -188,12 +195,17 @@ public class GUIManager : Singleton<GUIManager>
     {
         if (_Time != 0)
         {
-            float offsetTime_ = Time.time - _Time;
+            _offsetTime = Time.time - _Time;
             if (Timer != null)
             {
-                Timer.text = "時間:" + offsetTime_.ToString("#0") + " / " + _EndTime.ToString("#0");
+                float offsetTime_ = _EndTime - _offsetTime;
+                if (offsetTime_ >= 0f)
+                {
+                    int offset_ = (int)offsetTime_;
+                    Timer.text = string.Format("剩下 {0} 秒", offset_);
+                }
             }
-            if (offsetTime_ > _EndTime)
+            if (_offsetTime > _EndTime)
             {
                 if (_TimesUp != null)
                 {

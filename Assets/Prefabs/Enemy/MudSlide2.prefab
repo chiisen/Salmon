@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114339953669373948}
   - component: {fileID: 50597373227048780}
   - component: {fileID: 82800649199168444}
+  - component: {fileID: 114540064386687180}
   m_Layer: 0
   m_Name: MudSlide2
   m_TagString: Untagged
@@ -182,11 +183,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LossLifes: 1
   Sound: 1
-  MoveSpeed: 10
+  MoveSpeed: 6
   _AudioSource: {fileID: 82800649199168444}
   DelayTime: 1
   Hide: 0
   RepeatedCollision: 0
+  play: 1
+--- !u!114 &114540064386687180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1405169436760456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8abe6aab9f91f49828555e2eeaa5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForceMaterial: {fileID: 0}
+  ActiveChange: 1
+  _Alpha: 1
+  _OffsetX: 10
+  _OffsetY: 10
+  _DistanceX: 0.03
+  _DistanceY: 0.03
+  _WaveTimeX: 1.8817558
+  _WaveTimeY: 0.12
+  AutoPlayWaveX: 1
+  AutoPlaySpeedX: 5
+  AutoPlayWaveY: 0
+  AutoPlaySpeedY: 5
+  AutoRandom: 1
+  AutoRandomRange: 10
+  ShaderChange: 0
 --- !u!212 &212279061101750130
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -200,7 +229,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

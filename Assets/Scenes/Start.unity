@@ -143,7 +143,7 @@ MonoBehaviour:
   Joystick: {fileID: 738884459}
   DelayTime: 9999999
   NextLevel: Level1
-  TitleString: "\u606D\u559C\u904E\u95DC\uFF01"
+  TotalTime: 1
 --- !u!4 &44639297
 Transform:
   m_ObjectHideFlags: 0
@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 588876873}
   - component: {fileID: 588876875}
   - component: {fileID: 588876874}
+  - component: {fileID: 588876876}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -401,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1143029990}
+  m_Material: {fileID: 1136309554}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -423,6 +424,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 588876872}
+--- !u!114 &588876876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 588876872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8abe6aab9f91f49828555e2eeaa5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForceMaterial: {fileID: 0}
+  ActiveChange: 1
+  _Alpha: 1
+  _OffsetX: 1
+  _OffsetY: 3
+  _DistanceX: 0.01
+  _DistanceY: 0.03
+  _WaveTimeX: 4.9019613
+  _WaveTimeY: 5.828103
+  AutoPlayWaveX: 1
+  AutoPlaySpeedX: 3
+  AutoPlayWaveY: 0
+  AutoPlaySpeedY: 5
+  AutoRandom: 1
+  AutoRandomRange: 10
+  ShaderChange: 0
 --- !u!1 &629398996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,14 +1122,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!21 &1143029990
+--- !u!21 &1136309554
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -1112,21 +1140,20 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
+    - _Alpha: 0
+    - _DistanceX: 0.01
+    - _DistanceY: 0.03
+    - _OffsetX: 1
+    - _OffsetY: 3
+    - _WaveTimeX: 4.80901
+    - _WaveTimeY: 5.828103
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1194170886
 GameObject:
   m_ObjectHideFlags: 0

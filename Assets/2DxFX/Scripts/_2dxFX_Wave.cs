@@ -3,6 +3,7 @@
 //////////////////////////////////////////////
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 #if UNITY_EDITOR
@@ -35,8 +36,34 @@ public class _2dxFX_Wave : MonoBehaviour
 	Material tempMaterial;
 	Material defaultMaterial;
 
-	
-	void Start ()
+    protected Material rendererMaterial
+    {
+        get
+        {
+            if (this.GetComponent<Renderer>() != null)
+            {
+                return this.GetComponent<Renderer>().sharedMaterial;
+            }
+            else if (this.GetComponent<Image>() != null)
+            {
+                return GetComponent<Image>().material;
+            }
+            return null;
+        }
+        set
+        {
+            if (this.GetComponent<Renderer>() != null)
+            {
+                this.GetComponent<Renderer>().sharedMaterial = value;
+            }
+            else if (this.GetComponent<Image>() != null)
+            {
+                this.GetComponent<Image>().material = value;
+            }
+        }
+    }
+
+    void Start ()
 	{ 
 		ShaderChange = 0;
 	}
@@ -52,7 +79,7 @@ public class _2dxFX_Wave : MonoBehaviour
 		{
 			ShaderChange=1;
 			if (tempMaterial!=null) DestroyImmediate(tempMaterial);
-			GetComponent<Renderer>().sharedMaterial = ForceMaterial;
+			rendererMaterial = ForceMaterial;
 			ForceMaterial.hideFlags = HideFlags.None;
 			ForceMaterial.shader=Shader.Find(shader);
 		
@@ -63,27 +90,27 @@ public class _2dxFX_Wave : MonoBehaviour
 			if (tempMaterial!=null) DestroyImmediate(tempMaterial);
 			tempMaterial = new Material(Shader.Find(shader));
 			tempMaterial.hideFlags = HideFlags.None;
-			GetComponent<Renderer>().sharedMaterial = tempMaterial;
+			rendererMaterial = tempMaterial;
 			ShaderChange=0;
 		}
 		
 		#if UNITY_EDITOR
-		if (GetComponent<Renderer>().sharedMaterial.shader.name == "Sprites/Default")
+		if (rendererMaterial.shader.name == "Sprites/Default")
 		{
 			ForceMaterial.shader=Shader.Find(shader);
 			ForceMaterial.hideFlags = HideFlags.None;
-			GetComponent<Renderer>().sharedMaterial = ForceMaterial;
+			rendererMaterial = ForceMaterial;
 		}
 		#endif
 		if (ActiveChange)
 		{
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_Alpha", 1-_Alpha);
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_OffsetX", _OffsetX);
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_OffsetY", _OffsetY);
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_DistanceX", _DistanceX);
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_DistanceY", _DistanceY);
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_WaveTimeX", _WaveTimeX);
-			GetComponent<Renderer>().sharedMaterial.SetFloat("_WaveTimeY", _WaveTimeY);
+			rendererMaterial.SetFloat("_Alpha", 1-_Alpha);
+			rendererMaterial.SetFloat("_OffsetX", _OffsetX);
+			rendererMaterial.SetFloat("_OffsetY", _OffsetY);
+			rendererMaterial.SetFloat("_DistanceX", _DistanceX);
+			rendererMaterial.SetFloat("_DistanceY", _DistanceY);
+			rendererMaterial.SetFloat("_WaveTimeX", _WaveTimeX);
+			rendererMaterial.SetFloat("_WaveTimeY", _WaveTimeY);
 			
 			float timerange;
 			if (AutoRandom) 
@@ -110,16 +137,16 @@ public class _2dxFX_Wave : MonoBehaviour
 			if (tempMaterial!=null) DestroyImmediate(tempMaterial);
 			
 			if (gameObject.activeSelf && defaultMaterial!=null) {
-				GetComponent<Renderer>().sharedMaterial = defaultMaterial;
-				GetComponent<Renderer>().sharedMaterial.hideFlags = HideFlags.None;
+				rendererMaterial = defaultMaterial;
+				rendererMaterial.hideFlags = HideFlags.None;
 			}
 		}
 	}
 	void OnDisable()
 	{ 
 		if (gameObject.activeSelf && defaultMaterial!=null) {
-			GetComponent<Renderer>().sharedMaterial = defaultMaterial;
-			GetComponent<Renderer>().sharedMaterial.hideFlags = HideFlags.None;
+			rendererMaterial = defaultMaterial;
+			rendererMaterial.hideFlags = HideFlags.None;
 		}		
 	}
 	
@@ -135,13 +162,13 @@ public class _2dxFX_Wave : MonoBehaviour
 			ActiveChange=true;
 			tempMaterial = new Material(Shader.Find(shader));
 			tempMaterial.hideFlags = HideFlags.None;
-			GetComponent<Renderer>().sharedMaterial = tempMaterial;
+			rendererMaterial = tempMaterial;
 		}
 		else
 		{
 			ForceMaterial.shader=Shader.Find(shader);
 			ForceMaterial.hideFlags = HideFlags.None;
-			GetComponent<Renderer>().sharedMaterial = ForceMaterial;
+			rendererMaterial = ForceMaterial;
 		}
 		
 	}

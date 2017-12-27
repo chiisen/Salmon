@@ -69,6 +69,9 @@ public class LevelManager : Singleton<LevelManager>
     [Header("玩家過關需要移動的距離")]
     public int Distance = 999;
 
+    [Header("第一個敵人是否隨機，不隨機玩家必須持續移動")]
+    public bool FirstEnemyRand = false;
+
     // 名稱為 Level 的 GameObject 存放所以動態生成的物件 
     protected GameObject _levelRoot;
 
@@ -194,7 +197,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         yield return new WaitForSecondsRealtime(1f);
 
-        InstantiateEnemys();
+        InstantiateEnemys(true);
     }
     protected virtual void Update()
     {
@@ -205,7 +208,8 @@ public class LevelManager : Singleton<LevelManager>
         {
             if (Time.time - _Time > EnemyDelay)
             {
-                InstantiateEnemys();
+                // 第一個敵人不隨機，讓玩家持續移動
+                InstantiateEnemys(FirstEnemyRand);
 
                 for (int i = 1; i < EnemyRandCount; ++i)
                 {
@@ -219,7 +223,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    protected virtual void InstantiateEnemys()
+    protected virtual void InstantiateEnemys(bool bRand)
     {
         if (Enemys == null)
         {
@@ -238,7 +242,14 @@ public class LevelManager : Singleton<LevelManager>
         if (EnemyRandX == true)
         {
             // 隨機敵人的 X 軸
-            x_ = Random.Range(MinBound, MaxBound);
+            if (bRand == false)
+            {
+                x_ = CurrentPlayableCharacters.transform.localPosition.x;
+            }
+            else
+            {
+                x_ = Random.Range(MinBound, MaxBound);
+            }
         }
         instance_.transform.position = new Vector3( x_, EnemyStart, instance_.transform.position.z);// 魚 z 是 -3 可以蓋住魚
 
