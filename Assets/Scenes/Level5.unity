@@ -197,7 +197,7 @@ MonoBehaviour:
   PlayableCharacters: {fileID: 114190315571276158, guid: c246ff5283904d44d8477a4f820c1110,
     type: 2}
   AotuMove: 0
-  Distance: 60
+  Distance: 30
   FirstEnemyRand: 0
 --- !u!224 &60625674 stripped
 RectTransform:

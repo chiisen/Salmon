@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LossLifes: 1
   Sound: 1
-  MoveSpeed: 8
+  MoveSpeed: 5
   _AudioSource: {fileID: 82691232808252220}
   DelayTime: 1
   Hide: 0

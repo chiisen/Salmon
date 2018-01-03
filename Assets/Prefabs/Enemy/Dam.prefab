@@ -458,7 +458,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.25, y: 2.73}
+  m_Size: {x: 0.6, y: 2.73}
   m_EdgeRadius: 0
 --- !u!61 &61189883251723372
 BoxCollider2D:
@@ -483,7 +483,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.14, y: 2.48}
+  m_Size: {x: 0.6, y: 2.48}
   m_EdgeRadius: 0
 --- !u!61 &61265532938478100
 BoxCollider2D:
@@ -508,7 +508,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.72}
+  m_Size: {x: 0.6, y: 2.72}
   m_EdgeRadius: 0
 --- !u!61 &61295951484507650
 BoxCollider2D:
@@ -533,7 +533,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.03, y: 2.72}
+  m_Size: {x: 0.6, y: 2.72}
   m_EdgeRadius: 0
 --- !u!61 &61301124890658870
 BoxCollider2D:
@@ -558,7 +558,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.21, y: 2.67}
+  m_Size: {x: 0.6, y: 2.67}
   m_EdgeRadius: 0
 --- !u!61 &61342552465710586
 BoxCollider2D:
@@ -583,7 +583,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.24, y: 2.48}
+  m_Size: {x: 0.6, y: 2.48}
   m_EdgeRadius: 0
 --- !u!61 &61553283747939696
 BoxCollider2D:
@@ -608,7 +608,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.51}
+  m_Size: {x: 0.6, y: 2.51}
   m_EdgeRadius: 0
 --- !u!82 &82133847794611790
 AudioSource:
@@ -716,11 +716,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LossLifes: 1
   Sound: 1
-  MoveSpeed: 5
+  MoveSpeed: 3
   _AudioSource: {fileID: 82133847794611790}
   DelayTime: 1
   Hide: 0
   RepeatedCollision: 0
+  play: 1
 --- !u!114 &114374370574855676
 MonoBehaviour:
   m_ObjectHideFlags: 1

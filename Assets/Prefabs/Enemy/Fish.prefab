@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f70b65f98fc6f4f8e4c2975d817049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
+  MoveSpeed: 2
   AotuMove: 1
   ChangeColor: 1
   DelayTime: 1
