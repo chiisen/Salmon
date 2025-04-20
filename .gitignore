@@ -78,3 +78,5 @@ crashlytics-build.properties
 
 # App
 /App/*
+
+upgrade_log.txt
